@@ -15,15 +15,44 @@ export default function App() {
             { folder2: [] },
           ],
         },
-        { folder1: [] },
+        { folder2: [] },
       ],
     },
-    { folder3: [] },
+    {
+      folder3: [
+        'file1',
+        'file2',
+        {
+          folder1: [],
+        },
+      ],
+    },
   ]);
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
+      <Folder folders={treemap} />
     </div>
+  );
+}
+
+function Folder({ folders }) {
+  if (folders.length === 0) {
+    return null;
+  }
+  return (
+    <>
+      {Object.keys(folders).map((e) => {
+        return (
+          <div key={e}>
+            {console.log(folders[e], typeof folders[e] === 'object')}
+            {typeof folders[e] === 'object' ? (
+              <Folder folders={folders[e]} />
+            ) : (
+              <h1>{folders[e]}</h1>
+            )}
+          </div>
+        );
+      })}
+    </>
   );
 }
