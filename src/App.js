@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import './style.css';
-import Test from './Test';
+
+import { folderData } from './folder_data/folderData';
 
 export default function App() {
-  return <div></div>;
+  const [treeset, setTreeset] = useState(folderData);
+  return (
+    <div>
+      <Folder folderData={treeset} />
+    </div>
+  );
 }
