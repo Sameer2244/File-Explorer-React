@@ -15,8 +15,10 @@ p {
   padding: 0.5rem;
   width: fit-content;
   margin-left: 2rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 .folder p {
   padding: 0;
@@ -28,5 +30,9 @@ p {
 }
 .file {
   width: fit-content;
+  margin: 0;
+  padding: 0.5rem;
   margin-left: 2rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }

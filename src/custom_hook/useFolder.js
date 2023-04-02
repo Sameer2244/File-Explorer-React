@@ -5,7 +5,7 @@ export const useFolder = () => {
     if (fulldata.id === targetid) {
       fulldata.children.unshift({
         id: uuidv4(),
-        name: foldername + uuidv4(),
+        name: foldername,
         isfolder,
         children: [],
       });
@@ -18,8 +18,30 @@ export const useFolder = () => {
     return { ...fulldata, children: finalarr };
   };
 
-  const deleteItem = (fulldata, targetid, foldername, isfolder) => {};
-  const updateItem = (fulldata, targetid, foldername, isfolder) => {};
+  const deleteItem = (fulldata, targetid) => {
+    if (fulldata.length === 0) return null;
+    if (fulldata.id === targetid) {
+      fulldata = {};
+      return { ...fulldata };
+    }
+    let finalarr = [];
+    finalarr = fulldata.children.map((e) => {
+      return deleteItem(e, targetid);
+    });
+    return { ...fulldata, children: finalarr };
+  };
+
+  const updateItem = (fulldata, targetid, foldername) => {
+    if (fulldata.length === 0) return null;
+    if (fulldata.id === targetid) {
+      return { ...fulldata, name: foldername };
+    }
+    let finalarr = [];
+    finalarr = fulldata.children.map((e) => {
+      return updateItem(e, targetid, foldername);
+    });
+    return { ...fulldata, children: finalarr };
+  };
 
   return { addnewItem, deleteItem, updateItem };
 };
