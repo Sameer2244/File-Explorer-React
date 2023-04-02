@@ -2,34 +2,47 @@ export const folderData = {
   id: 1,
   name: 'user',
   isfolder: true,
-  childern: [
+  children: [
     {
       id: 2,
       name: 'documents',
       isfolder: true,
-      childern: [
+      children: [
         {
           id: 3,
           name: 'file1.js',
           isfolder: false,
-          childern: [],
+          children: [],
         },
         {
           id: 4,
           name: 'new folder',
           isfolder: true,
-          childern: [
+          children: [
             {
               id: 5,
               name: 'file2.js',
               isfolder: false,
-              childern: [],
+              children: [],
             },
             {
               id: 6,
               name: 'file3.js',
               isfolder: false,
-              childern: [],
+              children: [],
+            },
+          ],
+        },
+        {
+          id: 8,
+          name: 'new folder2',
+          isfolder: true,
+          children: [
+            {
+              id: 9,
+              name: 'file4.js',
+              isfolder: false,
+              children: [],
             },
           ],
         },
@@ -39,7 +52,7 @@ export const folderData = {
       id: 7,
       name: 'downloads',
       isfolder: true,
-      childern: [],
+      children: [],
     },
   ],
 };
