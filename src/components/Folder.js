@@ -101,7 +101,7 @@ export default function Folder({ folderData, treeset, setTreeset }) {
                   </div>
                 </div>
               ) : (
-                ''
+                <p className="file">🗄️{e.name}</p>
               )}
               <Folder
                 folderData={e.children}
