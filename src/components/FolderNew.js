@@ -12,7 +12,7 @@ export default function FolderNew({ treeset, addItem, rename, delete_item }) {
 
   if (treeset.isfolder) {
     return (
-      <div>
+      <div style={{ marginLeft: '2rem' }}>
         <div className="folder" onClick={() => setExpand(!expand)}>
           📁{treeset.name}
           {minput.show && (
@@ -104,13 +104,38 @@ export default function FolderNew({ treeset, addItem, rename, delete_item }) {
           })}
       </div>
     );
-  } else if (!treeset.isfolder) {
+  } else {
     return (
       <div className="file" key={treeset.id}>
         📄{treeset.name}
         <div className="btns">
+          {minput.show && (
+            <input
+              placeholder={minput.placeholder}
+              onKeyDown={(el) => {
+                if (el.keyCode === 13 && el.target.value) {
+                  if (operationType.current === 'new') {
+                    minput.placeholder.toString().includes('folder')
+                      ? addItem(treeset.id, minput.value, true)
+                      : addItem(treeset.id, minput.value, false);
+                  } else if (operationType.current === 'update') {
+                    rename(treeset.id, minput.value);
+                  }
+                  setInput({
+                    show: false,
+                    value: '',
+                    placeholder: '',
+                  });
+                }
+              }}
+              autoFocus
+              value={minput.value}
+              onChange={(e) => setInput({ ...minput, value: e.target.value })}
+            />
+          )}
           <button
             onClick={() => {
+              console.log('clicked');
               setInput({
                 ...minput,
                 show: true,
