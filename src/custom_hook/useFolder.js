@@ -19,15 +19,18 @@ export const useFolder = () => {
   };
 
   const deleteItem = (fulldata, targetid) => {
-    if (fulldata.length === 0) return null;
     if (fulldata.id === targetid) {
-      fulldata = {};
-      return { ...fulldata };
+      return null;
     }
     let finalarr = [];
-    finalarr = fulldata.children.map((e) => {
-      return deleteItem(e, targetid);
-    });
+    if (fulldata.children) {
+      fulldata.children.map((e, i) => {
+        const result = deleteItem(fulldata.children[i], targetid);
+        if (result !== null) {
+          finalarr.push(result);
+        }
+      });
+    }
     return { ...fulldata, children: finalarr };
   };
 

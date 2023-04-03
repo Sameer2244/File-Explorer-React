@@ -22,7 +22,13 @@ export default function App() {
 
   return (
     <div>
-      <FolderNew treeset={treeset} addItem={addItem} />
+      {console.log('updatedarry', treeset)}
+      <FolderNew
+        treeset={treeset}
+        addItem={addItem}
+        rename={rename}
+        delete_item={delete_item}
+      />
     </div>
   );
 }
